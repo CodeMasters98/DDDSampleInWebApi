@@ -39,7 +39,7 @@ namespace DDDSampleInWebApi.Domain.Services
                 throw new InvalidOperationException("Order not found.");
 
             // Remove line from the order
-            order.RemoveLine(new ProductId(productId));
+            //order.RemoveLine(new ProductId(productId));
 
             await _orderRepository.SaveAsync(order); // Save changes to the order
         }

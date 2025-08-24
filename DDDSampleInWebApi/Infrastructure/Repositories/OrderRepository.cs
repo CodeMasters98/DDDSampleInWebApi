@@ -1,5 +1,6 @@
 ﻿using DDDSampleInWebApi.Domain.Models;
 using DDDSampleInWebApi.Domain.Repositories;
+using DDDSampleInWebApi.Infrastructure.Contexts;
 
 namespace DDDSampleInWebApi.Infrastructure.Repositories
 {

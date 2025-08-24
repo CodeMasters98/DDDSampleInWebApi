@@ -29,6 +29,16 @@ namespace DDDSampleInWebApi.Domain.Models
                 _lines.Add(new OrderLine(productId, qty, unitPrice));
         }
 
+        public void Pendding()
+        {
+            //Logic Validate
+            if (Status == OrderStatus.Shipped)
+                throw new InvalidOperationException("Cannot checkout a non-draft order.");
+
+            Status = OrderStatus.Placed;
+            Raise(new OrderPlaced(Id, CalculateTotal()));
+        }
+
         // Business method to checkout the order
         public void Checkout()
         {
@@ -41,7 +51,7 @@ namespace DDDSampleInWebApi.Domain.Models
             Status = OrderStatus.Placed;
 
             // Raise the domain event
-            DomainEvents.Raise(new OrderPlaced(Id, CalculateTotal()));
+            Raise(new OrderPlaced(Id, CalculateTotal()));
         }
 
         // Method to calculate the total of the order

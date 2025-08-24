@@ -5,6 +5,13 @@
         public Guid Id { get; protected set; }
         public int Version { get; protected set; }
 
+        private readonly List<IDomainEvent> _domainEvents = new();
+        public IReadOnlyCollection<IDomainEvent> DomainEvents => _domainEvents.AsReadOnly();
+
+
+        protected void Raise(IDomainEvent @event) => _domainEvents.Add(@event);
+        public void ClearDomainEvents() => _domainEvents.Clear();
+
         // Entity equality is determined by the ID
         public override bool Equals(object obj)
         {

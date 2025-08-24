@@ -11,6 +11,7 @@ namespace DDDSampleInWebApi.Domain.Events
 
         public OrderPlaced(Guid orderId, Money totalAmount)
         {
+            //Validate
             OrderId = orderId;
             TotalAmount = totalAmount;
             OccurredOn = DateTime.UtcNow;

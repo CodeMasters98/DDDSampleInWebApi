@@ -2,7 +2,7 @@
 
 namespace DDDSampleInWebApi.Domain.Models
 {
-    public class Money : ValueObject
+    public class Money 
     {
         public decimal Amount { get; }
         public string Currency { get; }
@@ -32,12 +32,12 @@ namespace DDDSampleInWebApi.Domain.Models
             return new Money(Amount * quantity, Currency);
         }
 
-        protected override bool EqualsCore(ValueObject other)
-        {
-            var otherMoney = other as Money;
-            return otherMoney != null && Amount == otherMoney.Amount && Currency == otherMoney.Currency;
-        }
+        //protected override bool EqualsCore(ValueObject other)
+        //{
+        //    var otherMoney = other as Money;
+        //    return otherMoney != null && Amount == otherMoney.Amount && Currency == otherMoney.Currency;
+        //}
 
-        protected override int GetHashCodeCore() => (Amount, Currency).GetHashCode();
+        //protected override int GetHashCodeCore() => (Amount, Currency).GetHashCode();
     }
 }
