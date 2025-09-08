@@ -1,4 +1,5 @@
 ﻿using DDDSample.Domain.Abstractions;
+using DDDSample.Domain.OrderAggregates.Exceptions;
 namespace DDDSample.Domain.OrderAggregates;
 
 public class Order : Entity
@@ -30,8 +31,7 @@ public class Order : Entity
     public void AddItem(string sku, int quantity, decimal unitPrice)
     {
         if (Status != OrderStatus.Created)
-            throw new InvalidOperationException("Can't add items unless order is in 'Created' state.");
-
+            throw new InvalidOrderStateException(new Guid());
 
         var item = new OrderItem(Guid.NewGuid(), Id, sku, quantity, unitPrice);
         _items.Add(item);
